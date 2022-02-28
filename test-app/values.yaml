@@ -4,7 +4,7 @@
 
 extra_var:
   - name: myvar
-    value: "myvalue"
+    value: "myvalue1"
 
 replicaCount: 1
 
