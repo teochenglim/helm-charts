@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  dummy-nginx:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-03-01T06:27:32.068265164Z"
+    description: A Helm chart for Kubernetes
+    digest: e5d19b44090aeb5b5c950984db6c90aedc41c9a23a0e644f5dca476f30e9745d
+    name: dummy-nginx
+    type: application
+    urls:
+    - https://github.com/teochenglim/helm-charts/releases/download/dummy-nginx-1.0.0/dummy-nginx-1.0.0.tgz
+    version: 1.0.0
   echoserver:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -32,4 +43,4 @@ entries:
     urls:
     - https://github.com/teochenglim/helm-charts/releases/download/test-app-1.0.0/test-app-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-01T05:55:05.997528299Z"
+generated: "2022-03-01T06:27:32.068274164Z"
