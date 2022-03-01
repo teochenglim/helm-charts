@@ -1,5 +1,13 @@
 Readme
 
+* dummy-nginx chart
+
+  * return hostname and allow you to set env myvar and return, could be useful for any blue-green deployment demo
+
+* echoserver chart
+
+  * awesome jmalloc/echo-server help to debug http header/body/request and with websocket support
+
 ```shell
 ## adding helm repo
 helm repo add teochenglim https://teochenglim.github.io/helm-charts/
