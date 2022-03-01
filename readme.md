@@ -1,10 +1,10 @@
 ### readme
 
 * dummy-nginx chart
-  return hostname and allow you to set env myvar and return, could be useful for any blue-green deployment demo
+  * return hostname and allow you to set env myvar and return, could be useful for any blue-green deployment demo
 
 * echoserver chart
-  awesome jmalloc/echo-server help to debug http header/body/request and with websocket support
+  * awesome jmalloc/echo-server help to debug http header/body/request and with websocket support
 
 ```shell
 ## adding helm repo
