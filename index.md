@@ -5,7 +5,7 @@ Readme
 helm repo add teochenglim https://teochenglim.github.io/helm-charts/
 
 ### installing the app
-helm install myapp teochenglim/dummy-nginx
+helm install dummy teochenglim/dummy-nginx
 
 ### look for latest version of the app
 helm repo update teochenglim
