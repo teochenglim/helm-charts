@@ -1,5 +1,4 @@
-<details>
-<summary markdown="span">Readme</summary>
+Readme
 
 ```shell
 ## adding helm repo
@@ -36,5 +35,3 @@ This is your helm deploy! dummy-dummy-nginx-75c6958c45-hkpr9 myvalue1
 helm delete dummy
 helm delete echoserver
 ```
-
-</details>
