@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  echoserver:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-03-01T05:55:05.997511298Z"
+    description: A Helm chart for Kubernetes
+    digest: 69c603203ffeac0e8f625d2c136518bd7407f1f53a55b03fc70cc3ff08306c90
+    name: echoserver
+    type: application
+    urls:
+    - https://github.com/teochenglim/helm-charts/releases/download/echoserver-0.1.0/echoserver-0.1.0.tgz
+    version: 0.1.0
   test-app:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -21,4 +32,4 @@ entries:
     urls:
     - https://github.com/teochenglim/helm-charts/releases/download/test-app-1.0.0/test-app-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-01T02:50:13.788241027Z"
+generated: "2022-03-01T05:55:05.997528299Z"
