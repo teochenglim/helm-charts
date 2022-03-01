@@ -5,16 +5,14 @@
 helm repo add teochenglim https://teochenglim.github.io/helm-charts/
 
 ### installing the app
-helm install myapp teochenglim/dummy-nginx
+helm install dummy teochenglim/dummy-nginx
 
 ### look for latest version of the app
 helm repo update teochenglim
 
 ### install specific version of the helm charts
 helm upgrade --install dummy teochenglim/dummy-nginx --version 1.0.0
-helm upgrade --install dummy teochenglim/dummy-nginx --version 1.0.0
-
-helm upgrade --install echoserver teochenglim/echoserver
+helm upgrade --install echoserver teochenglim/echoserver --version 0.1.0
 
 ### Checking if the app is running
 kubectl get pod
