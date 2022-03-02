@@ -1,0 +1,30 @@
+name: Test install
+
+on:
+  push:
+    branches:
+      - main
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  install-chart:
+    name: install-chart
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        k8s:
+          - v1.16.4
+          - v1.17.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Create kind ${{ matrix.k8s }} cluster
+        uses: helm/kind-action@main
+        with:
+          node_image: kindest/node:${{ matrix.k8s }}
+      - name: Run chart-testing (install)
+        uses: helm/chart-testing-action@main
+        with:
+          command: install
+          config: .github/ct.yaml
