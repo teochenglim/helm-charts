@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "dummy-nginx-html.fullname" . }}-nginxconf
+data:
+  {{ .Values.configmap | nindent 4 }}
