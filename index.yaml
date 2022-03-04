@@ -22,4 +22,19 @@ entries:
     urls:
     - https://github.com/teochenglim/helm-charts/releases/download/echoserver-0.1.0/echoserver-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-01T06:27:32.068274164Z"
+  kroki:
+  - apiVersion: v2
+    appVersion: 0.16.0
+    created: "2022-03-04T04:59:31.453333844Z"
+    description: A Helm chart for Kubernetes
+    digest: 81dab81b07d0343642184f3a15f4c3d4d6ae4e15df765c2fc5a6365e0cb8d829
+    maintainers:
+    - email: teochenglim@gmail.com
+      name: Teo Cheng Lim
+      url: https://teochenglim.github.io/helm-charts/
+    name: kroki
+    type: application
+    urls:
+    - https://github.com/teochenglim/helm-charts/releases/download/kroki-1.0.0/kroki-1.0.0.tgz
+    version: 1.0.0
+generated: "2022-03-04T04:59:31.453345144Z"
