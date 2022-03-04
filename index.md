@@ -24,7 +24,8 @@ helm test kroki
 
 ### uninstall kroki
 helm delete kroki
-``
+
+```
 
 * dummy-nginx chart
 
