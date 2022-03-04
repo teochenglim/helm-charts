@@ -1,0 +1,21 @@
+{{- if .Values.mermaid.enabled -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "kroki.fullname" . }}-mermaid
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: mermaid
+    {{- include "kroki.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.mermaid.service.type }}
+  ports:
+    - port: {{ .Values.mermaid.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: mermaid
+    {{- include "kroki.selectorLabels" . | nindent 4 }}
+{{- end }}

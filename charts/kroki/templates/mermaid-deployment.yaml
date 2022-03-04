@@ -1,0 +1,58 @@
+{{- if .Values.mermaid.enabled -}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kroki.fullname" . }}-mermaid
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: mermaid
+    {{- include "kroki.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.mermaid.replicaCount }}
+  selector:
+    matchLabels:
+      app: mermaid
+      {{- include "kroki.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.mermaid.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: mermaid
+        {{- include "kroki.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.mermaid.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "kroki.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.mermaid.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}-mermaid
+          securityContext:
+            {{- toYaml .Values.mermaid.securityContext | nindent 12 }}
+          image: "{{ .Values.mermaid.image.repository }}:{{ .Values.mermaid.image.tag | default .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.mermaid.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8002
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.mermaid.resources | nindent 12 }}
+      {{- with .Values.mermaid.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.mermaid.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.mermaid.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

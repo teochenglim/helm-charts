@@ -1,0 +1,21 @@
+{{- if .Values.blockdiag.enabled -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "kroki.fullname" . }}-bpmn
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: bpmn
+    {{- include "kroki.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.bpmn.service.type }}
+  ports:
+    - port: {{ .Values.bpmn.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: bpmn
+    {{- include "kroki.selectorLabels" . | nindent 4 }}
+{{- end }}

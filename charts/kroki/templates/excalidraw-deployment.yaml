@@ -1,0 +1,66 @@
+{{- if .Values.mermaid.enabled -}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kroki.fullname" . }}-excalidraw
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: excalidraw
+    {{- include "kroki.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.excalidraw.replicaCount }}
+  selector:
+    matchLabels:
+      app: excalidraw
+      {{- include "kroki.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.excalidraw.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: excalidraw
+        {{- include "kroki.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.excalidraw.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "kroki.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.excalidraw.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}-excalidraw
+          securityContext:
+            {{- toYaml .Values.excalidraw.securityContext | nindent 12 }}
+          image: "{{ .Values.excalidraw.image.repository }}:{{ .Values.excalidraw.image.tag | default .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.excalidraw.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8004
+              protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          resources:
+            {{- toYaml .Values.excalidraw.resources | nindent 12 }}
+      {{- with .Values.excalidraw.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.excalidraw.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.excalidraw.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

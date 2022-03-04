@@ -1,10 +1,39 @@
 ### readme
 
+* kroki chart
+  * Kroki provides a unified API with support for BlockDiag (BlockDiag, SeqDiag, ActDiag, NwDiag, PacketDiag, RackDiag), BPMN, Bytefield, C4 (with PlantUML), Ditaa, Erd, Excalidraw, GraphViz, Mermaid, Nomnoml, Pikchr, PlantUML, SvgBob, UMLet, Vega, Vega-Lite, WaveDrom... and more to come!
+
+```shell
+## adding helm repo
+helm repo add teochenglim https://teochenglim.github.io/helm-charts/
+
+### installing the kroki
+helm install kroki teochenglim/kroki
+
+### look for latest version of the app
+helm repo update teochenglim
+
+### install default version of the kroki helm charts
+helm upgrade --install kroki teochenglim/kroki
+
+### install default version of the kroki helm charts with your custom values
+helm upgrade --install kroki teochenglim/kroki -f values.yaml
+
+### ensure all kroki service are running (kroki, blockdiag, bpmn, Excalidraw, mermiad)
+helm test kroki
+
+### uninstall kroki
+helm delete kroki
+
+```
+
+
 * dummy-nginx chart
   * return hostname and allow you to set env myvar and return, could be useful for any blue-green deployment demo
 
 * echoserver chart
   * awesome jmalloc/echo-server help to debug http header/body/request and with websocket support
+
 
 ```shell
 ## adding helm repo

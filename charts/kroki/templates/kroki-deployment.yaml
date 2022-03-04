@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kroki.fullname" . }}-kroki
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: kroki
+    {{- include "kroki.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: kroki
+      {{- include "kroki.labels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: kroki
+        {{- include "kroki.labels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "kroki.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      restartPolicy: Always
+      containers:
+        - name: {{ .Chart.Name }}-kroki
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          {{ if .Values.blockdiag.enabled }}
+          - name: KROKI_BLOCKDIAG_HOST
+            value: {{ include "kroki.fullname" . }}-blockdiag
+          - name: KROKI_BLOCKDIAG_PORT
+            value: "{{ .Values.blockdiag.service.port }}"
+          {{ end }}
+          {{ if .Values.bpmn.enabled }}
+          - name: KROKI_BPMN_HOST
+            value: {{ include "kroki.fullname" . }}-bpmn
+          - name: KROKI_BPMN_PORT
+            value: "{{ .Values.bpmn.service.port }}"
+          {{ end }}
+          {{ if .Values.excalidraw.enabled }}
+          - name: KROKI_EXCALIDRAW_HOST
+            value: {{ include "kroki.fullname" . }}-excalidraw
+          - name: KROKI_EXCALIDRAW_PORT
+            value: "{{ .Values.excalidraw.service.port }}"
+          {{ end }}
+          {{ if .Values.mermaid.enabled }}
+          - name: KROKI_MERMAID_HOST
+            value: {{ include "kroki.fullname" . }}-mermaid
+          - name: KROKI_MERMAID_PORT
+            value: "{{ .Values.mermaid.service.port }}"
+          {{ end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.containerPort }}
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -1,0 +1,58 @@
+{{- if .Values.blockdiag.enabled -}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kroki.fullname" . }}-blockdiag
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: blockdiag
+    {{- include "kroki.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.blockdiag.replicaCount }}
+  selector:
+    matchLabels:
+      app: blockdiag
+      {{- include "kroki.labels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.blockdiag.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: blockdiag
+        {{- include "kroki.labels" . | nindent 8 }}
+    spec:
+      {{- with .Values.blockdiag.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "kroki.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.blockdiag.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}-blockdiag
+          securityContext:
+            {{- toYaml .Values.blockdiag.securityContext | nindent 12 }}
+          image: "{{ .Values.blockdiag.image.repository }}:{{ .Values.blockdiag.image.tag | default .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.blockdiag.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8001
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.blockdiag.resources | nindent 12 }}
+      {{- with .Values.blockdiag.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.blockdiag.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.blockdiag.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}
