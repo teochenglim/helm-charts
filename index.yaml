@@ -3,6 +3,16 @@ entries:
   dummy-nginx:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-05-13T03:37:30.779511348Z"
+    description: A Helm chart for Kubernetes
+    digest: 6b1e1faf5a3c27a495fc8352f464b8cccbeaf8d981f31fb37f4863da3826bf9a
+    name: dummy-nginx
+    type: application
+    urls:
+    - https://github.com/teochenglim/helm-charts/releases/download/dummy-nginx-1.0.2/dummy-nginx-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-03-04T05:46:48.624891394Z"
     description: A Helm chart for Kubernetes
     digest: 0d1e023aebe3c132d9ac7b307b3158c54c069b39ef967b1d1fa30448df767010
@@ -22,6 +32,16 @@ entries:
     - https://github.com/teochenglim/helm-charts/releases/download/dummy-nginx-1.0.0/dummy-nginx-1.0.0.tgz
     version: 1.0.0
   dummy-nginx-html:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-05-13T03:37:30.927815386Z"
+    description: A Helm chart for Kubernetes
+    digest: bb4ef692e736d2405bb627049d714867dd954068f904f3b7bdd92a7ff870597a
+    name: dummy-nginx-html
+    type: application
+    urls:
+    - https://github.com/teochenglim/helm-charts/releases/download/dummy-nginx-html-1.0.1/dummy-nginx-html-1.0.1.tgz
+    version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2022-03-04T08:25:31.768784515Z"
@@ -58,4 +78,4 @@ entries:
     urls:
     - https://github.com/teochenglim/helm-charts/releases/download/kroki-1.0.0/kroki-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-04T08:25:31.768800215Z"
+generated: "2022-05-13T03:37:30.927834186Z"
