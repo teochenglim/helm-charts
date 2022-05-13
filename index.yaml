@@ -65,6 +65,20 @@ entries:
     version: 0.1.0
   kroki:
   - apiVersion: v2
+    appVersion: 0.17.0
+    created: "2022-05-13T03:56:02.876912958Z"
+    description: A Helm chart for Kubernetes
+    digest: b77b9c0d3f31894b6dc3c5bbafbd0be0a976f6311d4645c7211ad57b0f8c49f7
+    maintainers:
+    - email: teochenglim@gmail.com
+      name: Teo Cheng Lim
+      url: https://teochenglim.github.io/helm-charts/
+    name: kroki
+    type: application
+    urls:
+    - https://github.com/teochenglim/helm-charts/releases/download/kroki-1.0.1/kroki-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
     appVersion: 0.16.0
     created: "2022-03-04T04:59:31.453333844Z"
     description: A Helm chart for Kubernetes
@@ -78,4 +92,4 @@ entries:
     urls:
     - https://github.com/teochenglim/helm-charts/releases/download/kroki-1.0.0/kroki-1.0.0.tgz
     version: 1.0.0
-generated: "2022-05-13T03:37:30.927834186Z"
+generated: "2022-05-13T03:56:02.876928359Z"
